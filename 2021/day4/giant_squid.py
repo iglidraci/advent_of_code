@@ -44,10 +44,15 @@ def get_winners(matrices):
 
 
 def calculate_points(matrix, number):
-    unmarked = 0
-    for row in matrix:
-        unmarked += sum(list(map(lambda x: int(x), filter(lambda x: x is not None, row))))
-    return unmarked * number
+    '''
+    make the matrix flat first
+    filter all non None elements
+    map them into integers
+    sum them and multiply by the given number
+    '''
+    return number * sum(map(lambda x: int(x),
+                            filter(lambda x: x,
+                                   (y for x in matrix for y in x))))
 
 
 def build_matrices_from_file(file):
