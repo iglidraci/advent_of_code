@@ -31,5 +31,18 @@ def part1():
     return "".join(map(lambda x: x[0], stacks))
 
 
+def part2():
+    stacks = get_stacks()
+    for row in read_input():
+        if row.startswith("move"):
+            _, total, _, from_stack, _, to_stack = row.split(' ')
+            piece = []
+            for _ in range(int(total)):
+                piece.append(stacks[int(from_stack) - 1].pop(0))
+            stacks[int(to_stack) - 1] = [*piece, *stacks[int(to_stack) - 1]]
+    return "".join(map(lambda x: x[0], stacks))
+
+
 if __name__ == '__main__':
-    print(part1())
+    # print(part1())
+    print(part2())
